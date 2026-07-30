@@ -5,4 +5,4 @@ runs:
   steps:
     - name: Print who you are!
       shell: bash
-      run: sh -c "echo {$GITHUB_ACTOR}"
+      run: sh -c "echo $GITHUB_ACTOR"
