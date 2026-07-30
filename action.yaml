@@ -1,0 +1,8 @@
+name: 'This actions show who are you!'
+description: '이 액션은 당신이 누구인지 출력해줍니다.'
+runs:
+  using: 'composite'
+  steps:
+    - name: Print who you are!
+      shell: bash
+      run: sh -c "echo {$GITHUB_ACTOR}"
